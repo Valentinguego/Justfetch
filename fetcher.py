@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 API_KEY = os.getenv("WATCHMODE_API_KEY")
-
 netflix_id = 203
 pays = ["IS", "AU", "GB"]
 
@@ -17,6 +16,10 @@ for region in pays:
         data = response.json()
         if page <= data["total_pages"]:
             page += 1
-            print(data)
+            for title in data["titles"]:
+                print(title["title"])
+                print(title["year"])
+                print(title["type"])
+                print(region)
         else:
             break
