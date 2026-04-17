@@ -21,5 +21,5 @@ for region in pays:
                 print(title["year"])
                 print(title["type"])
                 print(region)
-        else:
+        else:e
             break
