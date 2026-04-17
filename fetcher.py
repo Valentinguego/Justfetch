@@ -14,3 +14,13 @@ for region in pays:
     response = requests.get(url)
     data = response.json()
     print(data)
+    page = 1
+    while True:
+        url = f"https://api.watchmode.com/v1/list-titles/?apiKey={API_KEY}&source_ids={netflix_id}&regions={region}&page={page}"
+        response = requests.get(url)
+        data = response.json()
+        if page <= data["total_pages"]:
+            page += 1
+            print(data)
+         else:
+            break
