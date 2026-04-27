@@ -21,9 +21,8 @@ for region in pays:
         if page <= data["total_pages"]:
             page += 1
             for title in data["titles"]:
-                print(title["title"])
-                print(title["year"])
-                print(title["type"])
-                print(region)
+                cursor.execute("INSERT OR IGNORE INTO titles (title, year, type, imdb_id) VALUES (?, ?, ?, ?)", (title["title"], title["year"], title["type"], title["imdb_id"]))
+                cursor.execute("INSERT OR IGNORE INTO availability (title_id, platform, country) VALUES (?, ?, ?)", (cursor.lastrowid, "Netflix", region))
+            conn.commit()  
         else:
             break
