@@ -8,7 +8,6 @@ load_dotenv()
 API_KEY = os.getenv("WATCHMODE_API_KEY")
 conn = sqlite3.connect("justfetch.db")
 cursor = conn.cursor()
-
 netflix_id = 203
 pays = ["IS", "AU", "GB"]
 
