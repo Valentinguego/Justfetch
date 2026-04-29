@@ -17,11 +17,23 @@ for region in pays:
         url = f"https://api.watchmode.com/v1/list-titles/?apiKey={API_KEY}&source_ids={netflix_id}&regions={region}&page={page}"
         response = requests.get(url)
         data = response.json()
+    print(data)
+    
+    if "total_pages" not in data:
+        print("API ERROR:", data)
+        break
+
         if page <= data["total_pages"]:
             page += 1
             for title in data["titles"]:
-                cursor.execute("INSERT OR IGNORE INTO titles (title, year, type, imdb_id) VALUES (?, ?, ?, ?)", (title["title"], title["year"], title["type"], title["imdb_id"]))
-                cursor.execute("INSERT OR IGNORE INTO availability (title_id, platform, country) VALUES (?, ?, ?)", (cursor.lastrowid, "Netflix", region))
-            conn.commit()  
+                cursor.execute("INSERT OR IGNORE INTO titles (title, year, type, imdb_id) VALUES (?, ?, ?, ?)", 
+                    (title["title"], title["year"], title["type"], title["imdb_id"]))
+                cursor.execute("SELECT id FROM titles WHERE imdb_id = ?",
+                    (title["imdb_id"],))
+                title_id = cursor.fetchone()[0]
+                cursor.execute("INSERT OR IGNORE INTO availability (title_id, platform, country) VALUES (?, ?, ?)", 
+                    (title_id, "Netflix", region))
+            conn.commit()
+
         else:
-            break
+            break  
