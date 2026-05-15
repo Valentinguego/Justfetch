@@ -538,6 +538,7 @@ def run(
     ssl_cert_reqs: int = ssl.CERT_NONE,
     ssl_ca_certs: str | os.PathLike[str] | None = None,
     ssl_ciphers: str = "TLSv1",
+    ssl_context_factory: Callable[[Config, Callable[[], ssl.SSLContext]], ssl.SSLContext] | None = None,
     headers: list[tuple[str, str]] | None = None,
     use_colors: bool | None = None,
     app_dir: str | None = None,
@@ -593,18 +594,20 @@ def run(
         ssl_cert_reqs=ssl_cert_reqs,
         ssl_ca_certs=ssl_ca_certs,
         ssl_ciphers=ssl_ciphers,
+        ssl_context_factory=ssl_context_factory,
         headers=headers,
         use_colors=use_colors,
         factory=factory,
         h11_max_incomplete_event_size=h11_max_incomplete_event_size,
         reset_contextvars=reset_contextvars,
     )
-    server = Server(config=config)
-
     if (config.reload or config.workers > 1) and not isinstance(app, str):
         logger = logging.getLogger("uvicorn.error")
         logger.warning("You must pass the application as an import string to enable 'reload' or 'workers'.")
         sys.exit(1)
+
+    config.load_app()
+    server = Server(config=config)
 
     try:
         if config.should_reload:
@@ -615,8 +618,8 @@ def run(
             Multiprocess(config, target=server.run, sockets=[sock]).run()
         else:
             server.run()
-    except KeyboardInterrupt:
-        pass  # pragma: full coverage
+    except KeyboardInterrupt:  # pragma: full coverage
+        pass
     finally:
         if config.uds and os.path.exists(config.uds):
             os.remove(config.uds)  # pragma: py-win32
