@@ -161,8 +161,9 @@ This project is actively under development. Current progress:
 - [x] Fetcher script
 - [x] SQLite database
 - [x] FastAPI backend with `/search` endpoint
-- [x] Frontend HTML structure
+- [ ] Frontend HTML structure
 - [ ] Frontend JavaScript (connecting UI to API)
+- [ ] Frontend CSS 
 - [ ] Deployment
 
 ---
