@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 import sqlite3
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
+app.mount("/", StaticFiles(directory="../Front", html=True), name="static")
 
 @app.get("/search")
 def search(movie: str):
