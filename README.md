@@ -52,13 +52,19 @@ JustFetch is built around a clean separation of two independent flows:
 
 ```
 JustFetch/
-├── .env                  # API key (excluded from GitHub)
+├── .env                    # API key (excluded from GitHub)
 ├── .gitignore
-├── requirements.txt
-├── fetcher.py            # Fetches Netflix catalogue → writes to DB
-├── api.py                # FastAPI app → reads from DB, exposes /search endpoint
-├── justfetch.db          # SQLite database (excluded from GitHub)
-└── index.html            # Frontend (HTML/CSS/JS)
+├── back/
+│   ├── api.py              # FastAPI app → reads from DB, exposes /search endpoint
+│   ├── fetcher.py          # Fetches Netflix catalogue → writes to DB
+│   ├── list_sources.py     # Lists all available platforms and their IDs from Watchmode
+│   ├── justfetch.db        # SQLite database (excluded from GitHub)
+│   ├── requirements.txt
+│   └── venv/               # Python virtual environment (excluded from GitHub)
+└── front/
+    ├── index.html
+    ├── script.js
+    └── style.css
 ```
 
 ---
