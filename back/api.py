@@ -28,4 +28,4 @@ def search(movie: str):
     
     return {"movie": movie, "availability": availability}
 
-app.mount("/", StaticFiles(directory="../Front", html=True), name="static")
+app.mount("/", StaticFiles(directory="../front", html=True), name="static")

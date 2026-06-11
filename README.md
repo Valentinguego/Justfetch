@@ -113,6 +113,7 @@ GET /search?movie=Inception
 | GB | Great Britain |
 
 > Coverage is limited to 3 countries on the free Watchmode API plan. More countries can be added with a paid plan.
+> You will have to add those 3 countries when signing in Watchmode 
 
 ---
 
@@ -120,7 +121,7 @@ GET /search?movie=Inception
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/justfetch.git
+git clone https://github.com/Valentinguego/justfetch.git
 cd justfetch
 ```
 
@@ -149,7 +150,7 @@ python fetcher.py
 
 ### 6. Start the API
 ```bash
-uvicorn api:app --reload
+uvicorn api:app --reload --host 0.0.0.0
 ```
 
 ---
@@ -162,7 +163,7 @@ This project is actively under development. Current progress:
 - [x] SQLite database
 - [x] FastAPI backend with `/search` endpoint
 - [ ] Frontend HTML structure
-- [ ] Frontend JavaScript (connecting UI to API)
+- [x] Frontend JavaScript (connecting UI to API)
 - [ ] Frontend CSS 
 - [ ] Deployment
 
