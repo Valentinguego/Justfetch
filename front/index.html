@@ -2,28 +2,120 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JustFetch</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
-
 <body>
-    <div id="box1">
-     <h1>JustFetch</h1>
-        <p>Welcome to JustFetch! This is a webapp where you can xxxxxxxxxxx </p>
+
+    <div class="board">
+
+        <header class="board__header">
+            <div class="board__brand">
+                <span class="board__logo">JustFetch</span>
+                <span class="board__tagline">Find your movie's nearest exit</span>
+            </div>
+            <div class="board__routes" aria-label="Countries covered">
+                <span class="route" title="Iceland"><span class="route__dot"></span>🇮🇸 IS</span>
+                <span class="route" title="Australia"><span class="route__dot"></span>🇦🇺 AU</span>
+                <span class="route" title="Great Britain"><span class="route__dot"></span>🇬🇧 GB</span>
+            </div>
+        </header>
+
+        <div class="board__body">
+
+            <main class="board__main">
+
+                <section class="board__search">
+                    <label for="searchInput" class="visually-hidden">Movie title</label>
+                    <input type="text" id="searchInput" placeholder="Search a movie title…" autocomplete="off">
+                    <button id="searchButton" type="button">Search</button>
+                </section>
+
+                <div class="board__suggestions">
+                    <span class="board__suggestions-label">Try:</span>
+                    <button class="chip" type="button" data-title="Inception">Inception</button>
+                    <button class="chip" type="button" data-title="The Matrix">The Matrix</button>
+                    <button class="chip" type="button" data-title="Parasite">Parasite</button>
+                    <button class="chip" type="button" data-title="Interstellar">Interstellar</button>
+                </div>
+
+                <section class="board__panel">
+                    <div class="board__panel-head">
+                        <span class="board__panel-title">Availability</span>
+                        <span class="board__live"><span class="board__live-dot"></span>Live</span>
+                    </div>
+                    <div class="board__columns">
+                        <span>Country</span>
+                        <span>Platform</span>
+                    </div>
+                    <div id="results" class="board__rows">
+                        <p class="placeholder">Type a title above (or pick a suggestion) and we'll check Iceland, Australia and the UK for you.</p>
+                    </div>
+                </section>
+
+            </main>
+
+            <aside class="board__side">
+
+                <section class="side__block">
+                    <h2 class="side__title">How it works</h2>
+                    <ol class="how">
+                        <li class="how__step">
+                            <span class="how__index">01</span>
+                            <span class="how__label">Search a title</span>
+                        </li>
+                        <li class="how__step">
+                            <span class="how__index">02</span>
+                            <span class="how__label">See which country's Netflix has it</span>
+                        </li>
+                        <li class="how__step">
+                            <span class="how__index">03</span>
+                            <span class="how__label">Point your VPN there and watch</span>
+                        </li>
+                    </ol>
+                </section>
+
+                <section class="side__block">
+                    <h2 class="side__title">On the radar</h2>
+                    <p class="side__text">More platforms and regions, when the API plan allows it.</p>
+                    <ul class="tags">
+                        <li class="tag tag--active">Netflix</li>
+                        <li class="tag">Disney+</li>
+                        <li class="tag">Prime Video</li>
+                        <li class="tag">🇫🇷 FR</li>
+                        <li class="tag">🇨🇦 CA</li>
+                    </ul>
+                </section>
+
+                <section class="side__block">
+                    <h2 class="side__title">About</h2>
+                    <p class="side__text">
+                        JustFetch checks Netflix catalogues across a handful of countries
+                        and tells you where a title is streaming, so you know where to
+                        point your VPN. Built as a personal project to learn Python, SQL,
+                        REST APIs and full-stack development.
+                    </p>
+                </section>
+
+            </aside>
+
+        </div>
+
+        <footer class="board__footer">
+            <span>Covering Iceland · Australia · Great Britain</span>
+            <nav class="board__footer-links" aria-label="Legal">
+                <a href="privacy.html" target="_blank">Privacy Policy</a>
+                <a href="legal.html" target="_blank">Legal Notice</a>
+            </nav>
+            <span>Data via Watchmode</span>
+        </footer>
+
     </div>
 
-    <div id="box2">
-        <h2>Search for a movie</h2>
-         <input type="text" id="searchInput" placeholder="Search a movie...">
-         <button id="searchButton">Search</button>
-    </div>
-
-    <div id="box3">
-        <h2>Results</h2>
-        <div id="results"></div>
-    </div>
-
-
-    <script src="script.js"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>
