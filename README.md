@@ -40,10 +40,10 @@ JustFetch is built around a clean separation of two independent flows:
 | Layer | Technology |
 |---|---|
 | Language | Python |
+| Dependency management | requirements.txt (pip) |
 | Backend framework | FastAPI |
 | Database | SQLite |
 | Frontend | HTML / CSS / JavaScript |
-| Server | Ubuntu |
 | Data source | [Watchmode API](https://api.watchmode.com/) |
 
 ---
@@ -84,6 +84,7 @@ CREATE TABLE availability (
     title_id  INTEGER NOT NULL,
     platform  TEXT    NOT NULL,
     country   TEXT    NOT NULL
+    UNIQUE(title_id, platform, country)
 );
 ```
 
@@ -119,7 +120,7 @@ GET /search?movie=Inception
 | GB | Great Britain |
 
 > Coverage is limited to 3 countries on the free Watchmode API plan. More countries can be added with a paid plan.
-> You will have to add those 3 countries when signing in Watchmode 
+> You will have to select those 3 countries when signing up on Watchmode. 
 
 ---
 
@@ -150,6 +151,7 @@ WATCHMODE_API_KEY=your_api_key_here
 Get your free API key at [watchmode.com](https://api.watchmode.com/).
 
 ### 5. Populate the database
+Nb. The existing database won't be put on GitHub to respect the 3rd article of the Terms & Conditions of Watchmode : "You may not resell any of the data or share it with 3rd parties"
 ```bash
 python fetcher.py
 ```
@@ -168,13 +170,12 @@ This project is actively under development. Current progress:
 - [x] Fetcher script
 - [x] SQLite database
 - [x] FastAPI backend with `/search` endpoint
-- [ ] Frontend HTML structure
+- [x] Frontend HTML structure
 - [x] Frontend JavaScript (connecting UI to API)
-- [ ] Frontend CSS 
-- [ ] Deployment
+- [x] Frontend CSS
 
 ---
 
 ## About
 
-Built as a personal learning project to develop practical skills in Python, SQL, REST APIs, and full-stack web development — from backend data pipelines to frontend interfaces.
+Built as a personal learning project to develop practical skills in Python, SQL, REST APIs, and full-stack web development—from backend data pipelines to frontend interfaces. The project was developed on a remote Ubuntu 24.04.4 LTS server using VS Code Remote SSH.
