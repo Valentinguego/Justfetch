@@ -165,7 +165,7 @@ uvicorn api:app --reload --host 0.0.0.0
 
 ## Status
 
-This project is actively under development. Current progress:
+This project was never meant to be deployed, therefore, it has reached its end :
 
 - [x] Fetcher script
 - [x] SQLite database
